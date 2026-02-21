@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RelativeActivity">
+
+    <ImageView
+        android:id="@+id/car"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/car"
+        android:scaleType="fitXY"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/helloTV"
+        android:text="@string/example"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/car"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/dark_green"
+        />
+    <EditText
+        android:id="@+id/nameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your name"
+        android:inputType="text"
+        android:padding="20dp"
+        android:layout_below="@id/helloTV"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+
+    <Button
+        android:id="@+id/submitBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_green"
+        android:text="Submit"
+        android:layout_below="@id/nameET"
+
+        />
+
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1"
+            android:layout_toEndOf="@id/submitBTN"
+            android:layout_below="@id/nameET"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:layout_alignEnd="@id/nameET"
+            android:layout_weight="2"
+            android:layout_below="@id/nameET"
+            />
+
+
+
+</RelativeLayout>
