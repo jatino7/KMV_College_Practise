@@ -50,6 +50,8 @@ class ChatFragment : Fragment() {
         Toast.makeText(requireContext(), email, Toast.LENGTH_SHORT).show()
     }
 
+
+
     companion object {
         /**
          * Use this factory method to create a new instance of
