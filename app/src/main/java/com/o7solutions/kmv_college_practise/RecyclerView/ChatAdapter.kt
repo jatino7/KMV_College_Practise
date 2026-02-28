@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.o7solutions.kmv_college_practise.R
 import org.w3c.dom.Text
 
-class ChatAdapter(val chatPersons: ArrayList<Person>): RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
+class ChatAdapter(val chatPersons: ArrayList<Person>,val onClick: OnItemClickListener): RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -27,6 +27,16 @@ class ChatAdapter(val chatPersons: ArrayList<Person>): RecyclerView.Adapter<Chat
         holder.name.text = item.name
         holder.lastMessage.text = item.lastMessage
         holder.time.text = item.time
+
+
+        holder.view.setOnClickListener {
+
+            onClick.onItemClick(position)
+        }
+
+        holder.time.setOnClickListener {
+            onClick.onTimeClick(position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -40,6 +50,14 @@ class ChatAdapter(val chatPersons: ArrayList<Person>): RecyclerView.Adapter<Chat
         val lastMessage = view.findViewById<TextView>(R.id.lastMessage)
         val time = view.findViewById<TextView>(R.id.time)
 
+
+    }
+
+    interface OnItemClickListener{
+
+        fun onItemClick(position: Int)
+
+        fun onTimeClick(position: Int)
 
     }
 }

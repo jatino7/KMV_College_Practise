@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.o7solutions.kmv_college_practise.R
+import com.o7solutions.kmv_college_practise.RecyclerView.ChatAdapter
+import com.o7solutions.kmv_college_practise.RecyclerView.Person
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,13 +22,17 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ChatFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ChatFragment : Fragment() {
+class ChatFragment : Fragment(), ChatAdapter.OnItemClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
+
+    private lateinit var chatAdapter: ChatAdapter
     var email = ""
     var num = 0
+
+    var personsList = arrayListOf<Person>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +55,63 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        chatAdapter = ChatAdapter(personsList,this)
+
+//        yahan prr main recycler view ki linking krr raha hu adapter ke saath
+        val recyclerView = view.findViewById<RecyclerView>(R.id.chat_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+
+        recyclerView.adapter = chatAdapter
+
         Toast.makeText(requireContext(), email, Toast.LENGTH_SHORT).show()
+
+        addData()
     }
 
+
+
+    fun addData() {
+
+//        Jahan prr main data add krr raha hu
+        personsList.add(Person(
+            "1","Ram","Hello","11:00 pm"
+        ))
+        personsList.add(Person(
+            "1","Ram","Hello","11:00 pm"
+        ))
+        personsList.add(Person(
+            "2","Rahul","Hello","11:00 pm"
+        ))
+        personsList.add(Person(
+            "3","Ramandeep","Hello","11:00 pm"
+        ))
+        personsList.add(Person(
+            "4","Ram Sharma","Hello","11:00 pm"
+        ))
+        personsList.add(Person(
+            "5","Ram Kapoor","Hello","11:00 pm"
+        ))
+        personsList.add(Person(
+            "6","Raman","Hello","11:00 pm"
+        ))
+        personsList.add(Person(
+            "7","Dharam","Hello","11:00 pm"
+        ))
+        personsList.add(Person(
+            "8","Raj","Hello","11:00 pm"
+        ))
+
+//        main jahan prr adapter ko bta raha hu ki list ke ander data add ho chuk hai
+        chatAdapter.notifyDataSetChanged()
+    }
+
+    override fun onItemClick(position: Int) {
+        Toast.makeText(requireContext(), personsList[position].id, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onTimeClick(position: Int) {
+        Toast.makeText(requireContext(), personsList[position].time, Toast.LENGTH_SHORT).show()
+    }
 
 
     companion object {
