@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "262704969549",
+    "project_id": "kmv-practise",
+    "storage_bucket": "kmv-practise.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262704969549:android:6a54c53ba828634daae904",
+        "android_client_info": {
+          "package_name": "com.o7solutions.kmv_college_practise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjr38ZmY72Pj8k776yHuvGTEuP58exRdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

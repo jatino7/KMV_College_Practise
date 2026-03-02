@@ -105,12 +105,10 @@ class ChatFragment : Fragment(), ChatAdapter.OnItemClickListener {
         chatAdapter.notifyDataSetChanged()
     }
 
-    override fun onItemClick(position: Int) {
-        Toast.makeText(requireContext(), personsList[position].id, Toast.LENGTH_SHORT).show()
-    }
+    override fun onClick(position: Int) {
 
-    override fun onTimeClick(position: Int) {
-        Toast.makeText(requireContext(), personsList[position].time, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), personsList[position].id, Toast.LENGTH_SHORT).show()
+
     }
 
 
