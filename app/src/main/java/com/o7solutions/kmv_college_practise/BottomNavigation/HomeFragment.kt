@@ -1,14 +1,18 @@
 package com.o7solutions.kmv_college_practise.BottomNavigation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.database.FirebaseDatabase
 import com.o7solutions.kmv_college_practise.R
 import com.o7solutions.kmv_college_practise.databinding.FragmentHomeBinding
+import com.o7solutions.kmv_college_practise.realtime_database.Users
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +29,9 @@ class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
+
+//    created realtime database object
+    var db = FirebaseDatabase.getInstance().getReference("users")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +68,31 @@ class HomeFragment : Fragment() {
                 putInt("number",5)
             }
             findNavController().navigate(R.id.chatFragment,bundle)
+        }
+
+        binding.addUser.setOnClickListener {
+
+            Toast.makeText(requireContext(), "button Clicked", Toast.LENGTH_SHORT).show()
+
+            var user = Users(
+                userId = System.currentTimeMillis().toString(), // auth.currentUser.uid
+                name = "Jatin",
+                email = "jatinmehmi790@gmail.com" , // auth.currentUser.email
+                timeStamp = System.currentTimeMillis().toString(),
+                phnNum = "1234567890"
+            )
+
+            db.child("normalUser").setValue(user)
+                .addOnSuccessListener {
+                    Toast.makeText(requireContext(), "User Added!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e->
+                    Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
+                    Log.e("Data Exception",e.toString())
+
+                }
+
+
         }
     }
 

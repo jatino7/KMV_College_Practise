@@ -22,4 +22,12 @@
         android:text="Chat Screen"
         />
 
+
+    <Button
+        android:id="@+id/addUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add User"
+        />
+
 </LinearLayout>
