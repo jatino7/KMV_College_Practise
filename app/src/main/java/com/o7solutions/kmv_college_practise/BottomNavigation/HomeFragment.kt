@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.o7solutions.kmv_college_practise.R
 import com.o7solutions.kmv_college_practise.databinding.FragmentHomeBinding
 import com.o7solutions.kmv_college_practise.realtime_database.Users
@@ -62,12 +65,25 @@ class HomeFragment : Fragment() {
         view.findViewById<Button>(R.id.chatScreen).setOnClickListener {
 
 
-            var bundle = Bundle().apply {
 
-                putString("email","jatin@gmail.com")
-                putInt("number",5)
-            }
-            findNavController().navigate(R.id.chatFragment,bundle)
+            db.child("normalUser").addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    val valueOfUser = snapshot.getValue(Users::class.java)
+                    Toast.makeText(requireContext(), valueOfUser?.name, Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+            })
+//
+//            var bundle = Bundle().apply {
+//
+//                putString("email","jatin@gmail.com")
+//                putInt("number",5)
+//            }
+//            findNavController().navigate(R.id.chatFragment,bundle)
         }
 
         binding.addUser.setOnClickListener {
@@ -76,7 +92,7 @@ class HomeFragment : Fragment() {
 
             var user = Users(
                 userId = System.currentTimeMillis().toString(), // auth.currentUser.uid
-                name = "Jatin",
+                name = "Jatin Mehmi",
                 email = "jatinmehmi790@gmail.com" , // auth.currentUser.email
                 timeStamp = System.currentTimeMillis().toString(),
                 phnNum = "1234567890"
@@ -94,6 +110,8 @@ class HomeFragment : Fragment() {
 
 
         }
+
+
     }
 
 
